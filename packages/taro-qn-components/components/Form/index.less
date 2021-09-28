@@ -1,0 +1,86 @@
+@import '../style/index';
+
+@form-prefix-cls: ~'@{prefix}-form';
+
+.@{form-prefix-cls} {
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  line-height: 1.28571;
+
+  &-vertical {
+    .@{form-prefix-cls}-item-label {
+      text-align: left;
+    }
+  }
+
+  &-item {
+    box-sizing: border-box;
+    margin: 0 0 18px;
+    padding: 0;
+
+    &-label {
+      color: #666;
+      line-height: 32px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-align: right;
+      vertical-align: middle;
+      padding-right: 12px;
+
+      &.red-mark::before {
+        content: '*';
+        display: inline-block;
+        margin-right: 4px;
+        color: #ff4d4f;
+        font-size: 14px;
+        line-height: 1;
+        vertical-align: middle;
+      }
+
+      &.has-colon::after {
+        content: ':';
+        position: relative;
+        top: -1px;
+        margin-left: 2px;
+      }
+    }
+
+    &-control {
+      position: relative;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &-input {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 32px;
+
+      &-content {
+        flex: auto;
+        max-width: 100%;
+      }
+    }
+    &-error {
+      color: #ff4d4f;
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    &-help {
+      color: #aaa;
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  }
+  .has-error {
+    .cross-input,
+    .cross-textarea,
+    .cross-select {
+      border-color: #ff4d4f !important;
+    }
+  }
+}

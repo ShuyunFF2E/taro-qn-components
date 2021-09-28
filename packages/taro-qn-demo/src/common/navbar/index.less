@@ -1,0 +1,24 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  .header-bar {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    z-index: 99;
+    box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    width: 100%;
+    padding-left: 20px;
+    .title {
+      margin-right: 20px;
+      color: #333;
+    }
+  }
+  .content {
+    padding: 56px 20px 0 20px;
+    flex: 1;
+  }
+}

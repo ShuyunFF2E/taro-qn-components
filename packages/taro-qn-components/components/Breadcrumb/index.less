@@ -1,0 +1,45 @@
+@import '../style/index';
+
+@breadcrumb-prefix-cls: ~'@{prefix}-breadcrumb';
+@breadcrumb-prefix-cls-title: ~'@{prefix}-breadcrumb-title';
+
+.@{breadcrumb-prefix-cls} {
+  display: flex;
+  width: 100%;
+  // 每一个item的样式
+  &-item {
+    position: relative;
+    margin: 0 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:not(:last-child)::before {
+      content: '/';
+      position: absolute;
+      right: -15px;
+      top: 0px;
+      color: #c0c4cc;
+    }
+    &:last-child {
+      .@{breadcrumb-prefix-cls-title} {
+        font-weight: normal;
+        color: #606266;
+      }
+    }
+  }
+
+  // 标题的样式
+  &-title {
+    word-break: break-all;
+    line-height: 1.4;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      color: #1890ff;
+    }
+  }
+}

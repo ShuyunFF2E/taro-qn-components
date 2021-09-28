@@ -1,0 +1,49 @@
+{
+  "name": "taro-qn-components",
+  "version": "0.0.7",
+  "scripts": {
+    "watch": "lerna run watch --parallel",
+    "dev:qn": "lerna run dev:qn --parallel",
+    "dev:h5": "lerna run dev:h5 --parallel",
+    "start": "dumi dev",
+    "site": "npm run h5:example && npm run docs:build && cp -vR packages/taro-qn-demo/dist/h5 docs-dist/example",
+    "link:componnets": "cd packages/taro-qn-components && npm run build:ui && cd ../taro-qn-demo && npm i ../taro-qn-components --save && cd ../../",
+    "h5:example": "cd packages/taro-qn-demo && npm i && npm run build:h5",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "install": "lerna bootstrap",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "release": "npm run build && npm publish",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "react": "16.x"
+  },
+  "devDependencies": {
+    "@umijs/test": "^3.0.5",
+    "dumi": "^1.0.16",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.1",
+    "yorkie": "^2.0.0"
+  }
+}

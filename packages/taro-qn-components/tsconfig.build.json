@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.build",
+    "compilerOptions": {
+      "allowJs": true,
+      "sourceMap": false,
+      "checkJs": false,
+      "target": "es2017",
+      "module": "es6",
+      "outDir": "./lib"
+    },
+    "include": [
+      "components/**/*"
+    ]
+  }
+  

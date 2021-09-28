@@ -1,0 +1,204 @@
+@import '../style/index';
+
+@table-prefix-cls: ~'@{prefix}-table';
+
+@head_height: 60px;
+@head_title_fz: 14px;
+@head_title_color: #909399;
+@row_2n_bg_color: #f5f7fa;
+@row_text_color: #606266;
+
+.@{table-prefix-cls} {
+  box-sizing: border-box;
+  position: relative;
+  max-width: 100vw;
+
+  &_table {
+    min-height: 100%;
+    min-width: 100%;
+  }
+
+  &_empty {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #cccccc;
+    min-height: 44px;
+    line-height: 44px;
+  }
+
+  &_head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: max-content;
+    min-width: 100%;
+    height: @head_height;
+    background-color: #f5f7fa;
+
+    &.@{table-prefix-cls}_scroll {
+      position: sticky;
+      top: 0;
+      z-index: 93;
+    }
+
+    > .@{table-prefix-cls}_title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: @head_height;
+      color: @head_title_color;
+      font-size: @head_title_fz;
+      font-weight: 600;
+      box-sizing: border-box;
+
+      &:active {
+        opacity: 0.7;
+      }
+
+      &.@{table-prefix-cls}_fixed {
+        position: sticky;
+        top: 0;
+      }
+
+      > .@{table-prefix-cls}_sortBtn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+
+        > .@{table-prefix-cls}_btn {
+          @color: #e2e2e2;
+          @active-color: #3975c6;
+          @size: 4px;
+          height: 0;
+          width: 0;
+
+          &.@{table-prefix-cls}_ascend {
+            border-top: @size solid transparent;
+            border-left: @size solid transparent;
+            border-right: @size solid transparent;
+            border-bottom: @size solid @color;
+            margin-bottom: 2px;
+
+            &.@{table-prefix-cls}_active {
+              border-bottom-color: @active-color;
+            }
+          }
+
+          &.@{table-prefix-cls}_descend {
+            border-top: @size solid @color;
+            border-left: @size solid transparent;
+            border-right: @size solid transparent;
+            border-bottom: @size solid transparent;
+
+            &.@{table-prefix-cls}_active {
+              border-top-color: @active-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_body {
+    @min-height: 60px;
+    overflow-y: auto;
+    min-height: @min-height;
+
+    > .@{table-prefix-cls}_row {
+      min-height: @min-height;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: max-content;
+      width: max-content;
+      min-width: 100%;
+      background-color: #ffffff;
+      border-top: 1px solid rgba(67, 120, 190, 0.1);
+
+      &:nth-of-type(2n) {
+        background: @row_2n_bg_color;
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+
+      > .@{table-prefix-cls}_col {
+        min-height: @min-height;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+
+        text {
+          font-size: 14px;
+          color: @row_text_color;
+          min-width: 100%;
+
+          // 收起
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        // 展开
+        &.@{table-prefix-cls}_expansion {
+          height: 100%;
+
+          text {
+            overflow: auto;
+            text-overflow: unset;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+          }
+        }
+
+        &.@{table-prefix-cls}_fixed {
+          position: sticky;
+          top: 0;
+          z-index: 92;
+        }
+      }
+      > .@{table-prefix-cls}_childCol {
+        min-height: @min-height;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        flex-direction: column;
+        text {
+          font-size: 14px;
+          color: @row_text_color;
+          min-width: 100%;
+
+          // 收起
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        // 展开
+        &.@{table-prefix-cls}_expansion {
+          height: 100%;
+
+          text {
+            overflow: auto;
+            text-overflow: unset;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+          }
+        }
+
+        &.@{table-prefix-cls}_fixed {
+          position: sticky;
+          top: 0;
+          z-index: 92;
+        }
+      }
+    }
+  }
+}

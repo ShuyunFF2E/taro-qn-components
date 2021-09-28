@@ -1,0 +1,27 @@
+@import '../style/index';
+
+@tag-prefix-cls: ~'@{prefix}-tag';
+
+.@{tag-prefix-cls} {
+  box-sizing: border-box;
+  margin: 0 8px 0 0;
+  color: #000000d9;
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 0 10px;
+  height: 26px;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  opacity: 1;
+  transition: all 0.3s;
+  &-circle {
+    border-radius: 15px;
+  }
+  &-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}

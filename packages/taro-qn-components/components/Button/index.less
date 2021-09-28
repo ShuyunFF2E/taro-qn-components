@@ -1,0 +1,285 @@
+@import '../style/index';
+
+@button-prefix-cls: ~'@{prefix}-button';
+
+@border-radius: 4px;
+
+@normal-bg: #fff;
+@normal-hover-bg: #fafafa;
+@normal-active-bg: #f0eeee;
+
+@primary-hover-bg: #188fffcc;
+@primary-active-bg: @color-blue4;
+
+@dashed-color: rgba(0, 0, 0, 0.65);
+
+@large-font-size: 16px;
+@default-font-size: 14px;
+@small-font-size: 12px;
+
+@large-padding: 10px 15px;
+@default-padding: 7px 15px;
+@small-padding: 5px 7px;
+
+@translate: 1px;
+
+/* group */
+.@{button-prefix-cls}-group {
+  padding-left: @translate;
+  display: inline-block;
+}
+
+.cross-button {
+  border-radius: @border-radius;
+  box-sizing: border-box;
+  display: inline-block;
+  outline: none;
+  line-height: 1;
+  cursor: pointer;
+  transition: 0.3s;
+
+  /* group */
+  &-group & {
+    position: relative;
+    margin-left: -@translate;
+    border-radius: 0;
+    z-index: 1;
+
+    &:first-child {
+      border-top-left-radius: @border-radius;
+      border-bottom-left-radius: @border-radius;
+    }
+
+    &:last-child {
+      border-top-right-radius: @border-radius;
+      border-bottom-right-radius: @border-radius;
+    }
+
+    &[disabled]:not(:first-child)::after,
+    &.primary:not(:first-child)::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 1px;
+      background: currentColor;
+      opacity: 0.1;
+      height: 104%;
+    }
+
+    &:hover {
+      z-index: 2;
+    }
+  }
+
+  /* type */
+  &.normal {
+    border: 1px solid @color-gray5;
+    color: rgba(96, 98, 102, 1);
+    background: @normal-bg;
+
+    &:hover {
+      background: @normal-hover-bg;
+      border-color: @primary-hover-bg;
+      color: @primary-hover-bg;
+    }
+
+    &:active {
+      background: @normal-active-bg;
+    }
+
+    &.danger {
+      &:hover {
+        opacity: 0.7;
+        background: #fff;
+      }
+
+      &,
+      &:active {
+        color: red;
+        border-color: red;
+      }
+    }
+  }
+
+  &.primary {
+    border: 1px solid @color-blue1;
+    background: @color-blue1;
+    color: @color-white;
+
+    &:hover {
+      border-color: @primary-hover-bg;
+      background: @primary-hover-bg;
+    }
+
+    &:active {
+      border-color: @primary-active-bg;
+      background: @primary-active-bg;
+    }
+
+    &.danger {
+      &,
+      &:active {
+        color: #fff;
+        background: red;
+        border-color: red;
+      }
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &.dashed {
+    border: 1px dashed @color-gray5;
+    color: @dashed-color;
+
+    &:hover {
+      border-color: @color-blue1;
+      color: @color-blue1;
+    }
+
+    &:active {
+      border-color: @color-blue4;
+      color: @color-blue4;
+    }
+
+    &.danger {
+      &:hover {
+        opacity: 0.7;
+        background: #fff;
+      }
+
+      &,
+      &:active {
+        color: red;
+        border-color: red;
+      }
+    }
+  }
+
+  &.link {
+    border: none;
+    background: transparent;
+    color: @color-blue3;
+
+    &:hover {
+      color: @color-blue1;
+    }
+
+    &:active {
+      color: @color-blue4;
+    }
+
+    &.danger {
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &,
+      &:active {
+        color: red;
+      }
+    }
+  }
+
+  &.text {
+    border: none;
+    background: transparent;
+    color: rgba(96, 98, 102, 1);
+
+    &:hover {
+      color: rgba(96, 98, 102, 1);
+      background: @normal-active-bg;
+    }
+
+    &:active {
+      color: rgba(96, 98, 102, 1);
+    }
+
+    &.danger {
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &,
+      &:active {
+        color: red;
+      }
+    }
+  }
+
+  /* size */
+  &.large {
+    padding: @large-padding;
+    font-size: @large-font-size;
+  }
+
+  &.default {
+    padding: @default-padding;
+    font-size: @default-font-size;
+  }
+
+  &.small {
+    padding: @small-padding;
+    font-size: @small-font-size;
+  }
+
+  /* block */
+  &.block {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* disabled */
+  &.disabled {
+    color: #00000040 !important;
+    border-color: #d9d9d9 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+
+    &.link,
+    &.text {
+      color: @color-gray6;
+      background: none;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &:not(.link) {
+      background: #f5f5f5;
+
+      &:hover {
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        color: #00000040;
+        opacity: 1;
+      }
+    }
+  }
+
+  &-loading {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: load 1.5s infinite linear;
+    margin-right: 7px;
+    border: 1px solid @color-gray6;
+    border-top: 1px solid @color-white;
+
+    @keyframes load {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

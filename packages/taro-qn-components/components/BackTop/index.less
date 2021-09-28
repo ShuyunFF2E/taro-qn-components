@@ -1,0 +1,23 @@
+@import '../style/index';
+
+@backtop-prefix-cls: ~'@{prefix}-backtop';
+
+.@{backtop-prefix-cls} {
+  position: relative;
+  width: 100%;
+  height: auto;
+  &-arrowBox {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    background: #1088e9;
+    text-align: center;
+    line-height: 25px;
+    position: fixed;
+    bottom: 60px;
+    right: 60px;
+    z-index: 10;
+    cursor: pointer;
+  }
+}

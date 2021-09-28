@@ -1,0 +1,73 @@
+@import '../style/index';
+
+@radio-prefix-cls: ~'@{prefix}-radio';
+
+@radio-disabled-inner-color: #d1d1d1;
+
+@radio-size: 14px;
+
+.@{radio-prefix-cls} {
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+
+  &-group {
+    display: inline-flex;
+
+    &.vertical {
+      flex-direction: column;
+
+      .@{radio-prefix-cls} {
+        margin-bottom: 8px;
+      }
+    }
+
+    &.horizontal {
+      flex-direction: row;
+    }
+  }
+
+  &-wrapper {
+    position: relative;
+    box-sizing: content-box;
+    width: @radio-size;
+    height: @radio-size;
+    margin-right: 5px;
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 50%;
+  }
+
+  &-wrapper.disabled {
+    border: 1px solid @radio-disabled-inner-color;
+  }
+
+  &-wrapper.checked {
+    border: 1px solid #409eff;
+
+    .@{radio-prefix-cls}-inner {
+      background: #409eff;
+    }
+  }
+
+  .@{radio-prefix-cls}-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 3px;
+  }
+
+  &-text {
+    color: @color-gray3;
+    height: 100%;
+    line-height: 100%;
+
+    &.disabled {
+      color: @radio-disabled-inner-color;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+  }
+}

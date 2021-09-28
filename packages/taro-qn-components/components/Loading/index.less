@@ -1,0 +1,52 @@
+@import '../style/index';
+@loading-prefix-cls: ~'@{prefix}-loading';
+@loading-border-color: #409EFF;
+@backgroundColor: #fff;
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.@{loading-prefix-cls} {
+  position: relative;
+  min-height: 100px;
+  height: 100%;
+  width: 100%;
+
+  &-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+  }
+  &-layer {
+    background: @backgroundColor;
+  }
+
+  &-circle {
+    animation: rotate 1.5s linear infinite;
+    transform-origin: center center;
+    height: 30px;
+    width: 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: @loading-border-color @loading-border-color @loading-border-color transparent;
+    border-radius: 50%;
+  }
+  &-text {
+    color: @loading-border-color;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

@@ -1,0 +1,35 @@
+.badge {
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  vertical-align: middle;
+
+  /* elements */
+  &__dot {
+    position: absolute;
+    right: -6px;
+    top: -6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ff4949;
+    box-shadow: 0 4px 8px 0 rgb(255 73 73 / 20%);
+  }
+
+  &__num {
+    position: absolute;
+    padding: 0 10px;
+    top: -7px;
+    right: -6px;
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.4;
+    border-radius: 14px 14px 14px 0;
+    background: #ff4949;
+    box-shadow: 0 4px 8px 0 rgb(255 73 73 / 20%);
+    transform: translate(50%, 0);
+    overflow: hidden;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,164 @@
+@import '../style/index';
+
+@select-prefix-cls: ~'@{prefix}-select';
+
+.@{select-prefix-cls} {
+  &-container {
+    position: relative;
+  }
+  &-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    padding-right: 32px;
+    color: #606266;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: all 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  &-placeholder-search {
+    color: #606266;
+    input::input-placeholder,
+    Input::input-placeholder {
+      color: #606266;
+    }
+  }
+
+  &-placeholder {
+    color: #9c9c9c;
+  }
+
+  &-default-size {
+    height: @default-height;
+    line-height: @default-height;
+  }
+
+  &-large-size {
+    height: @large-height;
+    line-height: @large-height;
+    input,
+    Input {
+      height: @large-height - 6px;
+      line-height: @large-height - 6px;
+    }
+  }
+
+  &-small-size {
+    height: @small-height;
+    line-height: @small-height;
+    input,
+    Input {
+      height: @small-height - 6px;
+      line-height: @small-height - 6px;
+    }
+  }
+
+  &-disable {
+    background-color: #fafbfc;
+    color: #00000040;
+    cursor: not-allowed;
+    input,
+    Input {
+      cursor: not-allowed;
+      background-color: #fafbfc;
+    }
+  }
+  &-input-hover {
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    border: 1px solid rgba(24, 144, 255, 1);
+  }
+
+  &-input-val {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    margin-top: -10px;
+    cursor: text;
+    user-select: none;
+  }
+  .down,
+  .up {
+    color: #dddddd;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -7px;
+    transition: 0.35s;
+  }
+  .down {
+    transform: rotate(-90deg);
+  }
+  .up {
+    transform: rotate(90deg);
+  }
+  .close {
+    color: #dddddd;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -7px;
+    transition: 0.35s;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 3;
+  }
+  &-options {
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    color: #606266;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.35s;
+    opacity: 1;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+    z-index: 666;
+    &-item {
+      line-height: 20px;
+      padding: 8px;
+      &:hover {
+        background: #1890ff;
+        color: white;
+      }
+    }
+    &-item-disable {
+      color: #00000040;
+      cursor: not-allowed;
+    }
+    &-item-select {
+      background: #6bb8ff;
+      color: white;
+    }
+  }
+  &-options-hidden {
+    display: none;
+  }
+
+  // 修改输入框默认样式
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #999999;
+  }
+
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #999999;
+  }
+
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #999999;
+  }
+}

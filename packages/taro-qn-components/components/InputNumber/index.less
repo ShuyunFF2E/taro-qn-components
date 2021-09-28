@@ -1,0 +1,52 @@
+@import '../style/index';
+
+@input-number-prefix-cls: ~'@{prefix}-input-number';
+
+@border-radius: 4px;
+
+.@{input-number-prefix-cls} {
+  width: 100px;
+  min-width: 80px;
+  height: 28px;
+  border-radius: @border-radius;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid;
+  box-sizing: border-box;
+  &__icon {
+    width: 28px;
+    height: 28px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  &_icon {
+    color: #666 !important;
+    font-weight: bold;
+    font-size: 12px !important;
+  }
+  &_icon-disabled {
+    color: #ccc !important;
+    font-weight: bold;
+    font-size: 12px !important;
+  }
+  &__input,
+  input {
+    border: none;
+    flex: 1;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &--disabled {
+    color: #ccc;
+    cursor: not-allowed !important;
+
+    &:active {
+      background-color: inherit;
+    }
+  }
+}

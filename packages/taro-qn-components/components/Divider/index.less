@@ -1,0 +1,96 @@
+@import '../style/index';
+
+@divider-prefix-cls: ~'@{prefix}-divider';
+
+@border_color: #e8e8e8;
+@text_color: #8f8989;
+
+.@{divider-prefix-cls} {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: @text_color;
+  font-size: 14px;
+  &-horizontal {
+    width: 100%;
+    border-top: 1px solid @border_color;
+    margin: 15px 0;
+    display: flex;
+    min-width: 100%;
+  }
+
+  &-vertical {
+    display: inline-block;
+    width: 1px;
+    background-color: @border_color;
+    margin: 0 8px;
+    position: relative;
+    vertical-align: middle;
+    min-height: 14px;
+  }
+
+  &-horizontal&-dashed {
+    border-top-style: dashed;
+  }
+
+  &-horizontal&-with-text {
+    display: flex;
+    margin: 16px 0;
+    color: @text_color;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+    border-top: 0;
+    border-top-color: @border_color;
+    &:before,
+    &:after {
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 1px solid transparent;
+      border-top-color: inherit;
+      border-bottom: 0;
+      transform: translateY(50%);
+      content: '';
+    }
+  }
+
+  &-horizontal&-with-text&-dashed {
+    &:before,
+    &:after {
+      border-top-style: dashed;
+    }
+  }
+
+  &-horizontal&-with-text-left {
+    &:before {
+      top: 50%;
+      width: 5%;
+    }
+    &:after {
+      top: 50%;
+      width: 95%;
+    }
+  }
+
+  &-horizontal&-with-text-right {
+    &:before {
+      top: 50%;
+      width: 95%;
+    }
+    &:after {
+      top: 50%;
+      width: 5%;
+    }
+  }
+
+  &-vertical&-dashed {
+    border-left-style: dashed;
+  }
+
+  &-inner-text {
+    display: inline-block;
+    padding: 0 10px;
+    flex-shrink: 0;
+  }
+}
