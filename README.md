@@ -56,33 +56,3 @@ cd packages/taro-qn-components && npm link
 ```
 npm link taro-qn-components
 ```
-
-## 发布
-
-## TODOLIST
-
-- Button ~ 已完成
-- Icon ~ 已完成
-- Breadcrumb 已完成
-- Pagination ~ 已完成
-- Steps ~ 已完成
-- Checkbox 已完成
-- Radio ~ 已完成
-- DatePicker
-- Input 已完成
-- Form 已完成
-- InputNumber 已完成
-- Textarea 已完成
-- Collapse 已完成
-- Rate 已完成
-- Select ~ 已完成 YW
-- Tabs 已完成
-- Tag 已完成
-- Table ~ 已完成
-- Alert 已完成
-- Modal 已完成
-- Loading ~ 已完成
-- UploadImage 已完成
-- Divider 已完成 mf
-- Drawer 已完成 mf
-- CountDown 已完成 YW
