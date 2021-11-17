@@ -17,6 +17,7 @@
     "build:lib": "tsc --project ./tsconfig.build.json",
     "build:rollup": "rollup --config ./rollup.config.js",
     "build:ui": "rollup --config ./rollup.config.js",
+    "cli-version": "node ./config/generate-version.js",
     "watch": "rollup --config ./rollup.config.js -w",
     "prepublishOnly": "npm run clean && npm run build:ui",
     "clean": "rimraf .temp dist lib coverage"
