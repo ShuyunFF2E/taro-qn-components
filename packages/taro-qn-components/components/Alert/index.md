@@ -34,16 +34,36 @@ import { CAlert } from 'taro-qn-components';
 
 ## 样式用法
 
-共有三种样式 `success`、`info`、`warning`
+共有四种样式 `success`、`info`、`warning`、`error`
 
 ```jsx | pure
+<CAlert message="样式用法" type="success" />
+<CAlert message="样式用法" type="info" />
 <CAlert message="样式用法" type="warning" />
+<CAlert message="样式用法" type="error" />
 ```
 
-## 图标用法
+## 图标及自定义用法
 
 ```jsx | pure
 <CAlert message="图标用法" showIcon />
+<CAlert message="图标用法" showIcon icon="help" />
+```
+
+## 标题+内容 用法
+
+```jsx | pure
+<CAlert title="我是标题" message="图标用法" showIcon />
+<CAlert title="我是标题" message={["1、段落1", "2、段落2"]} showIcon />
+<CAlert title="我是标题" message={["1、段落1", "2、段落2"]} showIcon />
+```
+
+## 拓展样式 用法
+
+```jsx | pure
+<CAlert title="我是标题" message="图标用法" style={{border:'none'}} showIcon />
+<CAlert title="我是标题" message={["1、段落1", "2、段落2"]} titleStyle={{color: '#000'}} showIcon />
+<CAlert title="我是标题" message={["1、段落1", "2、段落2"]} titleStyle={{color: '#000'}} messageStyle={{ textDecoration: 'underline' }} showIcon />
 ```
 
 ## 组件预览
@@ -52,8 +72,13 @@ import { CAlert } from 'taro-qn-components';
 
 ## Alert 参数
 
-| 参数     | 说明         | 类型    | 可选值                           | 默认值 |
-| :------- | :----------- | :------ | :------------------------------- | :----- |
-| message  | 展示信息     | String  | -                                | -      |
-| showIcon | 是否显示图标 | Boolean | -                                | false  |
-| type     | 文本展示类型 | String  | 'info' \| 'success' \| 'warning' | 'info' |
+| 参数         | 说明           | 类型    | 可选值                                                  | 默认值 |
+| :----------- | :------------- | :------ | :------------------------------------------------------ | :----- |
+| type         | 文本展示类型   | String  | 'info' &#124; 'success' &#124; 'warning' &#124; 'error' | 'info' |
+| title        | 标题文本       | String  | -                                                       | -      |
+| message      | 展示信息       | String  | -                                                       | -      |
+| showIcon     | 是否显示图标   | Boolean | -                                                       | false  |
+| icon         | 自定义图标类型 | String  | -                                                       | -      |
+| style        | 自定义样式     | Object  | -                                                       | -      |
+| titleStyle   | 标题自定义样式 | Object  | -                                                       | -      |
+| messageStyle | 标题自定义样式 | Object  | -                                                       | -      |
