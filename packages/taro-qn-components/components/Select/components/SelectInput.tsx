@@ -45,7 +45,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   const [inputVal, setInputVal] = useState<SearchVal>(selectedVal);
 
   // 存储定时器
-  const timer = useRef<number | undefined>();
+  const timer = useRef<NodeJS.Timeout | undefined>();
 
   // 存储search input占位符
   const inputPlaceholder = useMemo(() => {
@@ -78,7 +78,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
     setInputVal(selectedVal);
 
     // 为了延迟blur和click的冲突，主要是H5端
-    timer.current = window.setTimeout(() => {
+    timer.current = setTimeout(() => {
       onEventInput();
     }, 200);
   };
@@ -109,7 +109,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   // 组件销毁
   useEffect(() => {
     return () => {
-      window.clearTimeout(timer.current);
+      timer.current && clearTimeout(timer.current);
     };
   }, []);
 
