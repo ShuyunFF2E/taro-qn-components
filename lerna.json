@@ -1,6 +1,7 @@
 {
   "packages": ["packages/*"],
   "npmClient": "yarn",
+  "useWorkspaces": true,
   "command": {
     "bootstrap": {
       "hoist": true
