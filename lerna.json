@@ -1,6 +1,5 @@
 {
   "packages": ["packages/*"],
-  "workspaces": ["packages/*"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
