@@ -5,6 +5,30 @@ import { CIcon } from 'taro-qn-components';
 import './index.less';
 const lists = [
   {
+    icon_id: '',
+    name: '警告',
+    font_class: 'warn',
+    unicode: 'e6a1',
+  },
+  {
+    icon_id: '',
+    name: '信息',
+    font_class: 'info',
+    unicode: 'e6a0',
+  },
+  {
+    icon_id: '',
+    name: '添加',
+    font_class: 'add',
+    unicode: 'e69f',
+  },
+  {
+    icon_id: '',
+    name: '加号',
+    font_class: 'plus',
+    unicode: '',
+  },
+  {
     icon_id: '230862132',
     name: 'indeterminate',
     font_class: 'indeterminate',
@@ -179,16 +203,9 @@ const lists = [
     unicode_decimal: 59095,
   },
   {
-    icon_id: '21810420',
-    name: '上',
-    font_class: 'arrow_up',
-    unicode: 'e6d3',
-    unicode_decimal: 59091,
-  },
-  {
     icon_id: '21810421',
     name: '加号',
-    font_class: 'add',
+    font_class: 'plus',
     unicode: 'e6d4',
     unicode_decimal: 59092,
   },
@@ -198,13 +215,6 @@ const lists = [
     font_class: 'help',
     unicode: 'e6d5',
     unicode_decimal: 59093,
-  },
-  {
-    icon_id: '21810423',
-    name: '下',
-    font_class: 'arrow_down',
-    unicode: 'e6d6',
-    unicode_decimal: 59094,
   },
   {
     icon_id: '21810382',

@@ -1,6 +1,8 @@
+// 更新iconfont字体文件版本的时候，请确定按需添加，不要将UI的所有icon样式复制粘贴。部分iconfont命名不规范，在样式中进行规范。
+// TODO: 后续将独立的iconfont千牛组件库
 @font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_2568265_iriwysv4wmd.ttf?t=1629252325548')
+  src: url('//at.alicdn.com/t/font_2568265_xooeole70t.ttf?t=1637205247795')
     format('truetype');
 }
 .iconfont {
@@ -15,6 +17,21 @@
   text-transform: none;
   text-rendering: auto;
   vertical-align: middle;
+}
+.icon-warn:before {
+  content: '\e6a1';
+}
+
+.icon-info:before {
+  content: '\e6a0';
+}
+
+.icon-add:before {
+  content: '\e69f';
+}
+
+.icon-error:before {
+  content: '\e69b';
 }
 
 .icon-indeterminate:before {
@@ -116,20 +133,12 @@
   content: '\e6d7';
 }
 
-.icon-arrow_up:before {
-  content: '\e6d3';
-}
-
-.icon-add:before {
+.icon-plus:before {
   content: '\e6d4';
 }
 
 .icon-help:before {
   content: '\e6d5';
-}
-
-.icon-arrow_down:before {
-  content: '\e6d6';
 }
 
 .icon-delete:before {

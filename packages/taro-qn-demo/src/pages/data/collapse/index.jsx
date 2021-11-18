@@ -73,7 +73,7 @@ const CollapseDemo = () => {
       <View className="box">
         <CCollapse value={[]}>
           <CCollapse.Item
-            extra={<CIcon type="add" />}
+            extra={<CIcon type="plus" />}
             header="鹊桥仙·纤云弄巧-秦观"
           >
             金凤玉露一相逢，便胜却人间无数
