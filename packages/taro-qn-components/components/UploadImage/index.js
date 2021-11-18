@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
-import { View, Image } from "@tarojs/components";
-import CIcon from "../Icon";
-import { uuid } from '../../utils/utils'
-import "./index.less";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { View, Image } from '@tarojs/components';
+import CIcon from '../Icon';
+import { uuid } from '../../utils/utils';
+import './index.less';
 
 class CUploadImage extends React.PureComponent {
   static propTypes = {
@@ -12,19 +12,19 @@ class CUploadImage extends React.PureComponent {
     style: PropTypes.object,
     files: PropTypes.array,
     mode: PropTypes.oneOf([
-      "scaleToFill",
-      "aspectFit",
-      "aspectFill",
-      "widthFix",
-      "top",
-      "bottom",
-      "center",
-      "left",
-      "right",
-      "top left",
-      "top right",
-      "bottom left",
-      "bottom right",
+      'scaleToFill',
+      'aspectFit',
+      'aspectFill',
+      'widthFix',
+      'top',
+      'bottom',
+      'center',
+      'left',
+      'right',
+      'top left',
+      'top right',
+      'bottom left',
+      'bottom right',
     ]),
     showAddBtn: PropTypes.bool,
     multiple: PropTypes.bool,
@@ -34,23 +34,23 @@ class CUploadImage extends React.PureComponent {
 
   static defaultProps = {
     style: {},
-    className: "",
+    className: '',
     files: [],
-    mode: "aspectFill",
+    mode: 'aspectFill',
     showAddBtn: true,
     multiple: false,
     count: 1,
     onChange: () => {},
   };
 
-  handleRemoveImg = uid => {
-    let expressArr = this.props.files.filter(item => item.uid !== uid)
-    this.props.onChange(expressArr)
-  }
+  handleRemoveImg = (uid) => {
+    let expressArr = this.props.files.filter((item) => item.uid !== uid);
+    this.props.onChange(expressArr);
+  };
 
   chooseImage = () => {
     const { files = [], multiple, count, sizeType, sourceType } = this.props;
-    const filePathName = "apFilePaths";
+    const filePathName = 'apFilePaths';
     const params = {};
     if (multiple) {
       params.count = 99;
@@ -74,37 +74,39 @@ class CUploadImage extends React.PureComponent {
         this.props.onChange(newFiles);
       })
       .catch((e) => {
-        console.error("e", e);
+        console.error('e', e);
       });
   };
 
   render() {
     const { className, style, files, mode, showAddBtn = true } = this.props;
     let newFiles = [...files];
-    const rootCls = classnames("cross-upload-image", className);
-    newFiles.forEach(item => item.uid = uuid())
+    const rootCls = classnames('cross-upload-image', className);
+    newFiles.forEach((item) => (item.uid = uuid()));
     return (
       <View className={rootCls} style={style}>
-        <View className='cross-upload-image__flex-item'>
+        <View className="cross-upload-image__flex-item">
           {newFiles.map((item) => (
-            <View className='cross-upload-image__item' key={item.uid}>
+            <View className="cross-upload-image__item" key={item.uid}>
               <View
-                className='cross-upload-image__remove-btn'
+                className="cross-upload-image__remove-btn"
                 onClick={() => this.handleRemoveImg(item.uid)}
-              ></View>
+              />
               <Image
-                className='cross-upload-image__preview-img'
+                className="cross-upload-image__preview-img"
                 mode={mode}
                 src={item.url}
               />
             </View>
           ))}
-          {showAddBtn && <View
-            className='cross-upload-image__item cross-upload-image__choose-btn'
-            onClick={this.chooseImage}
-          >
-            <CIcon type='add' style={{color: '#ddd'}} />
-          </View>}
+          {showAddBtn && (
+            <View
+              className="cross-upload-image__item cross-upload-image__choose-btn"
+              onClick={this.chooseImage}
+            >
+              <CIcon type="plus" style={{ color: '#ddd' }} />
+            </View>
+          )}
         </View>
       </View>
     );
