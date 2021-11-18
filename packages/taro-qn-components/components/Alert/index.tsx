@@ -1,6 +1,6 @@
 import React from 'react';
 import cls from 'classnames';
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import PropTypes, { InferProps } from 'prop-types';
 import { CAlertProps, CAlertState } from './types/alert';
 import { prefixCls } from '../const';
@@ -15,7 +15,24 @@ export default class CAlert extends React.Component<CAlertProps, CAlertState> {
   public static propTypes: InferProps<CAlertProps>;
 
   public render(): JSX.Element {
-    const { type, showIcon, message, style } = this.props;
+    const {
+      type = 'info',
+      showIcon,
+      icon,
+      title,
+      message,
+      style,
+      titleStyle,
+      messageStyle,
+    } = this.props;
+    const icones = {
+      info: 'info',
+      success: 'success',
+      warning: 'warn',
+      error: 'error',
+    };
+    const iconType = icon || icones[type];
+    const msgArr = Array.isArray(message) ? message : [message || ''];
     return (
       <View
         className={cls(
@@ -26,9 +43,19 @@ export default class CAlert extends React.Component<CAlertProps, CAlertState> {
         )}
         style={style}
       >
-        {showIcon && <CIcon type="help" className="info-icon" />}
+        {showIcon && <CIcon type={iconType} className="alert-icon" />}
         <View className={`${classSelector}-content`}>
-          <Text>{message}</Text>
+          {title && (
+            <View
+              className={`${classSelector}-content-title`}
+              style={titleStyle}
+            >
+              {title}
+            </View>
+          )}
+          {msgArr.map((item) => (
+            <View style={messageStyle}>{item}</View>
+          ))}
         </View>
       </View>
     );
@@ -38,13 +65,21 @@ export default class CAlert extends React.Component<CAlertProps, CAlertState> {
 CAlert.defaultProps = {
   type: 'info',
   showIcon: false,
+  icon: '',
+  title: '',
   message: '',
   style: {},
+  titleStyle: {},
+  messageStyle: {},
 };
 
 CAlert.propTypes = {
   type: PropTypes.string,
   showIcon: PropTypes.bool,
+  icon: PropTypes.string,
+  title: PropTypes.string,
   message: PropTypes.string,
   style: PropTypes.object,
+  titleStyle: PropTypes.object,
+  messageStyle: PropTypes.object,
 };
