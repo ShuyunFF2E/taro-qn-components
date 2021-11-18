@@ -53,8 +53,15 @@ export default class CTag extends Component<CTagProps> {
         style={tagStyle}
         onClick={this.onClick.bind(this)}
       >
-        {icon && <CIcon type={icon} style={{ marginRight: '5px' }} />}
         {children}
+        {icon && (
+          <CIcon
+            type={icon}
+            size={10}
+            className={`${classSelector}-close`}
+            style={{ marginLeft: '5px' }}
+          />
+        )}
       </View>
     );
   }
