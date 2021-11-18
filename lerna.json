@@ -1,9 +1,9 @@
 {
   "packages": ["packages/*"],
+  "npmClient": "yarn",
   "command": {
     "bootstrap": {
-      "hoist": true,
-      "npmClientArgs": ["--legacy-peer-deps"]
+      "hoist": true
     }
   },
   "version": "0.0.3"
