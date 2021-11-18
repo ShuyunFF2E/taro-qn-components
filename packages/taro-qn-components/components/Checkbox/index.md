@@ -70,24 +70,29 @@ export default () => {
 
 ## Checkbox 参数
 
-| 参数          | 说明                                                                | 类型    | 可选值                     | 默认值     |
-| ------------- | ------------------------------------------------------------------- | ------- | -------------------------- | ---------- |
-| options       | object 选项列表，object 字段详细看下表                              | Array   | -                          | -          |
-| value         | 被选中的选项列表，开发者需要通过 onChange 事件来更新 value 值，必填 | string  | -                          | -          |
-| defaultValue  | 指定当前是否选中                                                    | boolean | -                          | false      |
-| indeterminate | 设置 indeterminate 状态                                             | boolean | -                          | false      |
-| layout        | 布局                                                                | String  | horizontal &#124; vertical | horizontal |
+| 参数          | 说明                                                                | 类型     | 可选值                     | 默认值     |
+| ------------- | ------------------------------------------------------------------- | -------- | -------------------------- | ---------- |
+| options       | object 选项列表，object 字段详细看下表                              | array    | -                          | -          |
+| value         | 被选中的选项列表，开发者需要通过 onChange 事件来更新 value 值，必填 | string   | -                          | -          |
+| defaultValue  | 指定当前是否选中                                                    | boolean  | -                          | false      |
+| indeterminate | 设置 indeterminate 状态                                             | boolean  | -                          | false      |
+| layout        | 布局                                                                | string   | horizontal &#124; vertical | horizontal |
+| onChange      | 变化时的回调函数                                                    | function | -                          | -          |
 
-## options object 字段详解
+## Checkbox Group 参数
+
+| 参数         | 说明             | 类型     | 可选值 | 默认值 |
+| ------------ | ---------------- | -------- | ------ | ------ |
+| options      | 指定可选项       | array    | -      | -      |
+| value        | 被选中的选项列表 | array    | -      | -      |
+| defaultValue | 指定当前是否选中 | boolean  | -      | false  |
+| disabled     | 整组失效         | boolean  | -      | false  |
+| onChange     | 变化时的回调函数 | function | -      | -      |
+
+## options 字段详解
 
 | 参数     | 说明                     | 类型    | 可选值 | 默认值 | 可选或必填 |
 | -------- | ------------------------ | ------- | ------ | ------ | ---------- |
 | disabled | 是否禁止点击             | Boolean | -      | false  | 可选       |
 | label    | 选项标题                 | String  | -      | -      | 必填       |
 | value    | 选项标识符，必须保证唯一 | String  | -      | -      | 必填       |
-
-## Checkbox 事件
-
-| 事件名称 | 说明                                                            | 返回参数          |
-| -------- | --------------------------------------------------------------- | ----------------- |
-| onChange | 必填，需要通过该事件来改变 state 的值，输入框值改变时触发的事件 | 选中的 value 列表 |

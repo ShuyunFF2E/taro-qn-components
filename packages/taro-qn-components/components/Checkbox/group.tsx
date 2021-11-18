@@ -8,8 +8,16 @@ import CCheckbox from './index';
 const classSelector = `${prefixCls}-checkbox`;
 
 export default function Group(props) {
-  const { children, defaultValue, value, options, onChange, disabled, layout } =
-    props;
+  const {
+    children,
+    defaultValue,
+    value,
+    options,
+    onChange,
+    disabled,
+    layout,
+    style,
+  } = props;
 
   const [currentValue, setCurrentValue] = useState(
     value === undefined ? defaultValue : value,
@@ -79,7 +87,9 @@ export default function Group(props) {
 
   return (
     <CheckboxGroupContext.Provider value={context}>
-      <View className={classes}>{checkboxes}</View>
+      <View className={classes} style={style}>
+        {checkboxes}
+      </View>
     </CheckboxGroupContext.Provider>
   );
 }
