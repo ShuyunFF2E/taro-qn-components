@@ -62,7 +62,7 @@ class CTabs extends Component<CTabsProps, CTabsState> {
                   [`${classSelector}-header-box-line`]: type !== 'card',
                   [`${classSelector}-header-box-card`]: type === 'card',
                   [`${classSelector}-header-box-${type}-active`]:
-                    Number(activeId) === Number(item.tabId),
+                    activeId === item.tabId,
                 })}
                 onClick={() => this.getClick(item)}
               >
