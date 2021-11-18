@@ -15,8 +15,11 @@ const ModalDemo = () => {
         <CButton onClick={() => setVisible(true)} type="primary">
           弹出模态框
         </CButton>
-        <CModal visible={visible} onClose={() => setVisible(false)}>
-          <View>modal弹出的内容</View>
+        <CModal visible={visible} onCancel={() => setVisible(false)}>
+          <View>Some contents...</View>
+          <View>Some contents...</View>
+          <View>Some contents...</View>
+          <View>Some contents...</View>
         </CModal>
       </View>
       <View className="h1">对话框用法</View>
@@ -26,11 +29,13 @@ const ModalDemo = () => {
         </CButton>
         <CModal
           visible={visible1}
-          onClose={() => setVisible1(false)}
           onCancel={() => setVisible1(false)}
           hasFooter
         >
-          <View>modal弹出的内容</View>
+          <View>Some contents...</View>
+          <View>Some contents...</View>
+          <View>Some contents...</View>
+          <View>Some contents...</View>
         </CModal>
       </View>
       <View className="h1">自定义页脚</View>
@@ -41,7 +46,7 @@ const ModalDemo = () => {
         <CModal
           visible={visible2}
           title="显示title"
-          onClose={() => setVisible2(false)}
+          onCancel={() => setVisible2(false)}
           hasFooter
           footer={[
             <CButton
