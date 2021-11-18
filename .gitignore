@@ -29,5 +29,7 @@ packages/taro-qn-components/node_modules
 packages/taro-qn-demo/node_modules
 packages/taro-qn-demo/dist
 packages/taro-qn-components/dist
+packages/taro-qn-components/.conf
+packages/taro-qn-components/yarn.lock
 packages/taro-qn-demo/package-lock.json
 packages/taro-qn-components/package-lock.json

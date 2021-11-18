@@ -20,7 +20,8 @@
     "cli-version": "node ./config/generate-version.js",
     "watch": "rollup --config ./rollup.config.js -w",
     "prepublishOnly": "npm run clean && npm run build:ui",
-    "clean": "rimraf .temp dist lib coverage"
+    "clean": "rimraf .temp dist lib coverage",
+    "copyDist": "node tools/copyDist.js"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -47,6 +48,7 @@
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.27.0",
     "rollup-plugin-visualizer": "^4.0.2",
+    "fs-extra": "^9.0.1",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
