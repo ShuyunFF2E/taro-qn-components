@@ -1,6 +1,6 @@
 {
   "name": "taro-qn-components",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "author": "shuyun-fe",
   "description": "数云千牛Taro多端组件库",
   "license": "ISC",
@@ -41,6 +41,7 @@
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "fs-extra": "^9.0.1",
     "postcss": "^8.2.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.3.1",
@@ -48,7 +49,6 @@
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.27.0",
     "rollup-plugin-visualizer": "^4.0.2",
-    "fs-extra": "^9.0.1",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
