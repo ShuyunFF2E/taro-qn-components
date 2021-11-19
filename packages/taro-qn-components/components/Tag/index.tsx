@@ -22,11 +22,16 @@ export default class CTag extends Component<CTagProps> {
   }
 
   public render(): JSX.Element {
-    const { color, solid, circle, icon, disabled, children } = this.props;
-    const rootClass = cls(classSelector, {
-      [`${classSelector}-circle`]: !!circle,
-      [`${classSelector}-disabled`]: !!disabled,
-    });
+    const { color, solid, circle, icon, disabled, className, children } =
+      this.props;
+    const rootClass = cls(
+      classSelector,
+      {
+        [`${classSelector}-circle`]: !!circle,
+        [`${classSelector}-disabled`]: !!disabled,
+      },
+      className,
+    );
 
     let tagStyle = {};
 
@@ -81,5 +86,6 @@ CTag.propTypes = {
   circle: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
+  className: PropTypes.string,
   onClick: PropTypes.func,
 };
