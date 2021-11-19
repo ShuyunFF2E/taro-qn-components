@@ -31,6 +31,11 @@ export interface CTagProps {
   icon?: string;
 
   /**
+   * tag的className
+   */
+  className?: string;
+
+  /**
    * 选择时的回调函数
    */
   onClick?: CommonEventFunction;
