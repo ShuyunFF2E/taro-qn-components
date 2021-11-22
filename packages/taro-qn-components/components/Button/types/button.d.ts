@@ -54,6 +54,11 @@ export interface CButtonProps {
    * 设置按钮的图标组件
    */
   icon?: string;
+
+  /**
+   * 自定义额外style
+   */
+  style?: object;
 }
 
 export interface CButtonState {}
