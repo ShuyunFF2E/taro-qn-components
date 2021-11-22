@@ -11,11 +11,7 @@ const CModalHeader = ({ children, className, onCancel }) => {
   return (
     <View className={`${prefixCls}-modal-box-header ${className}`}>
       {children}
-      <CIcon
-        onClick={onCancel}
-        className={`${prefixCls}-modal-close-icon`}
-        type="close"
-      />
+      <CIcon onClick={onCancel} className={`${prefixCls}-modal-close-icon`} type="close" />
     </View>
   );
 };
@@ -36,6 +32,7 @@ export default class CModal extends React.Component {
     cancelText: PropTypes.string,
     hasFooter: PropTypes.bool,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    bodyStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -55,10 +52,7 @@ export default class CModal extends React.Component {
     const { okText, cancelText, onCancel } = this.props;
     return (
       <View className={`${prefixCls}-modal-box-footer`}>
-        <CButton
-          className={`${prefixCls}-modal-box-footer-button`}
-          onClick={onCancel}
-        >
+        <CButton className={`${prefixCls}-modal-box-footer-button`} onClick={onCancel}>
           {cancelText}
         </CButton>
         <CButton type="primary" onClick={() => this.props.onOk()}>
@@ -69,8 +63,7 @@ export default class CModal extends React.Component {
   };
 
   render() {
-    const { width, title, hasFooter, visible, showMask, footer, onCancel } =
-      this.props;
+    const { width, title, hasFooter, visible, showMask, footer, bodyStyle, onCancel } = this.props;
     return (
       <View
         className={cls({
@@ -82,16 +75,10 @@ export default class CModal extends React.Component {
 
         <View className={`${prefixCls}-modal-box`} style={{ width }}>
           <CModalHeader onCancel={onCancel}>{title}</CModalHeader>
-          <View className={`${prefixCls}-modal-box-content`}>
+          <View className={`${prefixCls}-modal-box-content`} style={bodyStyle}>
             {this.props.children}
           </View>
-          {hasFooter ? (
-            !footer ? (
-              this.CModalFooter()
-            ) : (
-              <View className={`${prefixCls}-modal-box-footer`}>{footer}</View>
-            )
-          ) : null}
+          {hasFooter ? !footer ? this.CModalFooter() : <View className={`${prefixCls}-modal-box-footer`}>{footer}</View> : null}
         </View>
       </View>
     );
