@@ -15,16 +15,7 @@ export default class CAlert extends React.Component<CAlertProps, CAlertState> {
   public static propTypes: InferProps<CAlertProps>;
 
   public render(): JSX.Element {
-    const {
-      type = 'info',
-      showIcon,
-      icon,
-      title,
-      message,
-      style,
-      titleStyle,
-      messageStyle,
-    } = this.props;
+    const { type = 'info', showIcon, icon, title, message, style, titleStyle, messageStyle } = this.props;
     const icones = {
       info: 'info',
       success: 'success',
@@ -46,15 +37,14 @@ export default class CAlert extends React.Component<CAlertProps, CAlertState> {
         {showIcon && <CIcon type={iconType} className="alert-icon" />}
         <View className={`${classSelector}-content`}>
           {title && (
-            <View
-              className={`${classSelector}-content-title`}
-              style={titleStyle}
-            >
+            <View className={`${classSelector}-content-title`} style={titleStyle}>
               {title}
             </View>
           )}
-          {msgArr.map((item) => (
-            <View style={messageStyle}>{item}</View>
+          {msgArr.map((item, index) => (
+            <View key={index} style={messageStyle}>
+              {item}
+            </View>
           ))}
         </View>
       </View>
@@ -78,7 +68,7 @@ CAlert.propTypes = {
   showIcon: PropTypes.bool,
   icon: PropTypes.string,
   title: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   style: PropTypes.object,
   titleStyle: PropTypes.object,
   messageStyle: PropTypes.object,
