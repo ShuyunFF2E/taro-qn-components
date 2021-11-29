@@ -22,8 +22,7 @@ export default class CTag extends Component<CTagProps> {
   }
 
   public render(): JSX.Element {
-    const { color, solid, circle, icon, disabled, className, children } =
-      this.props;
+    const { color, solid, circle, icon, disabled, className, children } = this.props;
     const rootClass = cls(
       classSelector,
       {
@@ -38,7 +37,6 @@ export default class CTag extends Component<CTagProps> {
     if (solid && color) {
       tagStyle = {
         backgroundColor: color,
-        color: '#fff',
         borderColor: color,
       };
     } else if (solid) {
@@ -53,20 +51,9 @@ export default class CTag extends Component<CTagProps> {
     }
 
     return (
-      <View
-        className={rootClass}
-        style={tagStyle}
-        onClick={this.onClick.bind(this)}
-      >
+      <View className={rootClass} style={tagStyle} onClick={this.onClick.bind(this)}>
         {children}
-        {icon && (
-          <CIcon
-            type={icon}
-            size={10}
-            className={`${classSelector}-close`}
-            style={{ marginLeft: '5px' }}
-          />
-        )}
+        {icon && <CIcon type={icon} size={10} className={`${classSelector}-close`} style={{ marginLeft: '5px' }} />}
       </View>
     );
   }
