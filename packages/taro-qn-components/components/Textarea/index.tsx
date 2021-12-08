@@ -31,15 +31,7 @@ export default class CTextarea extends React.Component<CTextareaProps> {
   };
 
   public render(): JSX.Element {
-    const {
-      style = {},
-      maxlength = -1,
-      disabled,
-      value,
-      count,
-      placeholder,
-      className = '',
-    } = this.props;
+    const { style = {}, maxlength = -1, disabled, value, count, autoHeight, placeholder, className = '' } = this.props;
     const { focus } = this.state;
     const { width = '100%', margin, padding, ...otherStyle } = style;
     const _maxLength = parseInt(maxlength.toString());
@@ -60,7 +52,7 @@ export default class CTextarea extends React.Component<CTextareaProps> {
           onBlur={this.onChangeEvent}
           onFocus={this.onChangeEvent}
           maxlength={Number(maxlength)}
-          autoHeight
+          autoHeight={autoHeight}
           style={otherStyle}
           onInput={this.onChangeEvent}
           disabled={disabled}
@@ -85,6 +77,7 @@ CTextarea.defaultProps = {
   placeholder: '',
   disabled: false,
   count: false,
+  autoHeight: { minRows: 4 },
   onChange: (): void => {},
 };
 
@@ -96,5 +89,6 @@ CTextarea.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   count: PropTypes.bool,
+  autoHeight: PropTypes.oneOf([PropTypes.bool, PropTypes.object]),
   onChange: PropTypes.func,
 };

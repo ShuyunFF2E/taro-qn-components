@@ -32,6 +32,11 @@ export interface CTextareaProps {
    */
   count?: boolean;
   /**
+   * 是否自动高度
+   * @default { minRows: 4 }
+   */
+  autoHeight?: any;
+  /**
    * 输入框值改变时触发的事件，
    * 开发者需要通过 onChange 事件来更新 value 值变化，
    * onChange 函数必填
