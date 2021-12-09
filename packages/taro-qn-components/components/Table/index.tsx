@@ -2,16 +2,10 @@ import React, { memo, useCallback, useEffect, useState, useMemo } from 'react';
 import { ScrollView, Text, View } from '@tarojs/components';
 import classnames from 'classnames';
 import useDeepCompareEffect from './use-compare-effect';
+import CPagination from '../Pagination';
 import Loading from '../Loading';
 import { prefixCls } from '../const';
-import {
-  AnyOpt,
-  FixedType,
-  SortOrder,
-  CompareFn,
-  IColumns,
-  Props,
-} from './types/table';
+import { AnyOpt, FixedType, SortOrder, CompareFn, IColumns, Props } from './types/table';
 import './index.less';
 
 const classSelector = `${prefixCls}-table`;
@@ -45,6 +39,9 @@ const Table = (props: Props): JSX.Element | null => {
       x: '100vw',
       y: 420,
     },
+    pagination = false,
+    onPageChange,
+    pageClassName,
   } = props;
 
   // states
@@ -77,8 +74,7 @@ const Table = (props: Props): JSX.Element | null => {
   // 排序
   useEffect(() => {
     // 查找需要排序的列
-    const sortColumns: IColumns[] =
-      columns.filter((item) => item.sortOrder) || [];
+    const sortColumns: IColumns[] = columns.filter((item) => item.sortOrder) || [];
 
     // 根据多列排序优先级对 sortColumns 进行排序，优先级高的放在最后
     sortColumns.sort((a, b) => {
@@ -128,8 +124,7 @@ const Table = (props: Props): JSX.Element | null => {
       }
       const array: SortOrder[] = ['ascend', 'descend', undefined];
       const curr: number = array.indexOf(temp[index].sortOrder);
-      const next: SortOrder = (temp[index].sortOrder =
-        array[(curr + 1) % array.length]);
+      const next: SortOrder = (temp[index].sortOrder = array[(curr + 1) % array.length]);
       item.onSort && item.onSort(next);
       setColumns(temp);
     },
@@ -164,6 +159,12 @@ const Table = (props: Props): JSX.Element | null => {
     }
   };
 
+  const pageChange = (current, pageSize) => {
+    if (!pagination) return;
+
+    onPageChange(current, pageSize);
+  };
+
   /**
    * @description 固定列的时候计算偏移量
    * @param fixedType
@@ -195,11 +196,7 @@ const Table = (props: Props): JSX.Element | null => {
     [columns],
   );
 
-  const Title = (props: {
-    key: any;
-    column: IColumns;
-    index: number;
-  }): JSX.Element => {
+  const Title = (props: { key: any; column: IColumns; index: number }): JSX.Element => {
     const { column, index } = props;
 
     return (
@@ -212,8 +209,7 @@ const Table = (props: Props): JSX.Element | null => {
           [titleClassName]: true,
         })}
         style={{
-          [column.fixed as string]:
-            column.fixed && getFixedDistance(column.fixed, index),
+          [column.fixed as string]: column.fixed && getFixedDistance(column.fixed, index),
           width: getSize(column.width || DEFAULT_COL_WIDTH),
           ...column.titleStyle,
           ...titleStyle,
@@ -244,11 +240,7 @@ const Table = (props: Props): JSX.Element | null => {
     );
   };
 
-  const Row = (props: {
-    key: any;
-    dataSourceItem: AnyOpt;
-    index: number;
-  }): JSX.Element => {
+  const Row = (props: { key: any; dataSourceItem: AnyOpt; index: number }): JSX.Element => {
     const { dataSourceItem, index } = props;
     let rows = columns.map((columnItem, colIndex) => {
       const text = dataSourceItem[columnItem.dataIndex];
@@ -293,12 +285,8 @@ const Table = (props: Props): JSX.Element | null => {
           key={columnItem.key || columnItem.dataIndex}
           className={classnames({
             [colClassName]: true,
-            [`${classSelector}_col`]: !Array.isArray(
-              dataSourceItem[columnItem.dataIndex],
-            ),
-            [`${classSelector}_childCol`]: Array.isArray(
-              dataSourceItem[columnItem.dataIndex],
-            ),
+            [`${classSelector}_col`]: !Array.isArray(dataSourceItem[columnItem.dataIndex]),
+            [`${classSelector}_childCol`]: Array.isArray(dataSourceItem[columnItem.dataIndex]),
             [`${classSelector}_fixed`]: columnItem.fixed,
             [`${classSelector}_expansion`]: expansion,
             [columnItem.className as string]: true,
@@ -307,8 +295,7 @@ const Table = (props: Props): JSX.Element | null => {
             textAlign: columnItem.align || 'center',
             justifyContent: flexContent,
             width: getSize(columnItem.width || DEFAULT_COL_WIDTH),
-            [columnItem.fixed as string]:
-              columnItem.fixed && getFixedDistance(columnItem.fixed, colIndex),
+            [columnItem.fixed as string]: columnItem.fixed && getFixedDistance(columnItem.fixed, colIndex),
             ...columnItem.style,
             ...colStyle,
           }}
@@ -333,11 +320,7 @@ const Table = (props: Props): JSX.Element | null => {
   };
 
   const Empty = () => {
-    return (
-      <View className={`${classSelector}_empty`}>
-        {empty || <Text>暂无数据</Text>}
-      </View>
-    );
+    return <View className={`${classSelector}_empty`}>{empty || <Text>暂无数据</Text>}</View>;
   };
 
   const wrapWidth = useMemo((): number => {
@@ -360,12 +343,7 @@ const Table = (props: Props): JSX.Element | null => {
         ...style,
       }}
     >
-      {loading && (
-        <Loading
-          style={{ position: 'absolute', top: '0px', zIndex: 99 }}
-          layerColor="rgba(255,255,255,.65)"
-        />
-      )}
+      {loading && <Loading style={{ position: 'absolute', top: '0px', zIndex: 99 }} layerColor="rgba(255,255,255,.65)" />}
       <ScrollView
         className={`${classSelector}_table`}
         scroll-x={dataSource.length !== 0 && scroll.x}
@@ -381,35 +359,20 @@ const Table = (props: Props): JSX.Element | null => {
             [`${classSelector}_scroll`]: scroll.y,
           })}
         >
-          {columns.length === 0 ? (
-            <Empty />
-          ) : (
-            columns.map((item, index) => (
-              <Title
-                key={item.key || item.dataIndex}
-                column={item}
-                index={index}
-              />
-            ))
-          )}
+          {columns.length === 0 ? <Empty /> : columns.map((item, index) => <Title key={item.key || item.dataIndex} column={item} index={index} />)}
         </View>
-        <View
-          className={`${classSelector}_body`}
-          style={{ maxHeight: `${tbodyScroll}px` }}
-        >
-          {dataSource.length > 0 ? (
-            dataSource.map((dataSourceItem, index) => (
-              <Row
-                key={dataSourceItem[rowKey]}
-                dataSourceItem={dataSourceItem}
-                index={index}
-              />
-            ))
-          ) : (
-            <Empty />
-          )}
+        <View className={`${classSelector}_body`} style={{ maxHeight: `${tbodyScroll}px` }}>
+          {dataSource.length > 0 ? dataSource.map((dataSourceItem, index) => <Row key={dataSourceItem[rowKey]} dataSourceItem={dataSourceItem} index={index} />) : <Empty />}
         </View>
       </ScrollView>
+      <View
+        className={classnames({
+          [`${classSelector}_pageBox`]: pagination,
+          [pageClassName ? pageClassName : '']: true,
+        })}
+      >
+        {pagination && <CPagination {...pagination} onChange={pageChange} />}
+      </View>
     </View>
   );
 };
