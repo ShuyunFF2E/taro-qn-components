@@ -51,6 +51,7 @@ class CButton extends React.Component<CButtonProps, CButtonState> {
       className,
       danger,
       icon,
+      style,
     } = this.props;
 
     const classNames = classnames(
@@ -66,7 +67,7 @@ class CButton extends React.Component<CButtonProps, CButtonState> {
     );
 
     return (
-      <View className={classNames} onClick={this.onBtnClick}>
+      <View className={classNames} style={style} onClick={this.onBtnClick}>
         {loading && <Text className="cross-button-loading" />}
         {icon && <CIcon type={icon} style={{ marginRight: 5 }} />}
         {children}

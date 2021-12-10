@@ -116,6 +116,7 @@ import { CButton } from 'taro-qn-components';
 | :-------- | :--------------------------- | :------ | :------------------------------------------ | :------ |
 | block     | 是否通栏样式                 | Boolean | -                                           | false   |
 | className | 自定义额外类名               | String  | -                                           | -       |
+| style | 自定义拓展样式               | Object  | -                                           | -       |
 | danger    | 设置危险按钮                 | Boolean | -                                           | false   |
 | disabled  | 设置按钮为禁用态（不可点击） | Boolean | -                                           | false   |
 | loading   | 设置按钮的载入状态           | Boolean | -                                           | false   |

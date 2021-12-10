@@ -50,14 +50,7 @@ const columns = [
   },
 ];
 
-<CTable
-  colStyle={{ padding: '0 5px' }}
-  columns={columns}
-  dataSource={[]}
-  empty={<Text>数据被外星人带走了</Text>}
-  rowKey="user_id"
-  loading={false}
-/>;
+<CTable colStyle={{ padding: '0 5px' }} columns={columns} dataSource={[]} empty={<Text>数据被外星人带走了</Text>} rowKey="user_id" loading={false} />;
 ```
 
 ## 基本展示
@@ -199,30 +192,70 @@ const dataSource = [{
 
 ```
 
+## 分页器展示
+
+```jsx
+const state = {
+  params: {
+    current: 1,
+    pageSize: 10,
+  },
+};
+
+onPageChange = (current, pageSize) => {
+  console.log('分页器change', current, pageSize);
+  this.setState({
+    params: {
+      current,
+      pageSize,
+    },
+  });
+};
+
+<CTable
+  colStyle={{ padding: '0 5px' }}
+  columns={this.getColumns()}
+  dataSource={this.state.dataSource}
+  rowKey="user_id"
+  loading={this.state.loading}
+  pagination={{
+    total: 50,
+    current: params.current,
+    pageSize: params.pageSize,
+    showPageSizeOptions: true,
+  }}
+  onPageChange={this.onPageChange}
+  pageClassName={'tablePageTest'}
+/>;
+```
+
 ## 组件预览
 
 <iframe style="width:100%; height: 600px; border: 1px solid #ddd" src="https://ui.shuyun.com/example/#/pages/data/table/index"></iframe>
 
 ## Table 参数
 
-| 参数           | 说明                           | 类型      | 可选值 | 默认值                  |
-| :------------- | :----------------------------- | :-------- | :----- | :---------------------- |
-| columns        | 表格列的配置描述，具体项见下表 | Object[]  | -      | []                      |
-| dataSource     | 数据数组                       | Object[]  | -      | -                       |
-| rowKey         | 表格行 key 的取值              | String    | -      | -                       |
-| loading        | 组件是否加载中                 | Boolean   | -      | -                       |
-| className      | 表格拓展类名                   | String    | -      | -                       |
-| style          | 表格扩展样式                   | Object    | -      | {}                      |
-| titleClassName | 标题拓展类名                   | String    | -      | -                       |
-| titleStyle     | 标题拓展样式                   | Object    | -      | {}                      |
-| rowClassName   | 表格行的拓展类名               | String    | -      | -                       |
-| rowStyle       | 表格行的拓展样式               | Object    | -      | {}                      |
-| colClassName   | 表格列拓展类名                 | String    | -      | -                       |
-| colStyle       | 表格列拓展样式                 | Object    | -      | {}                      |
-| onChange       | 分页、排序、筛选变化时触发     | Function  | -      | -                       |
-| empty          | 无数据时展示节点               | ReactNode | -      | `<Text>暂无数据</Text>` |
-| multipleSort   | 启用多列排序                   | Boolean   | -      | false                   |
-| scroll         | 可滚动区域                     | Object    | -      | { x: '100vw', y: 420 }  |
+| 参数           | 说明                                                              | 类型            | 可选值 | 默认值                  |
+| :------------- | :---------------------------------------------------------------- | :-------------- | :----- | :---------------------- |
+| columns        | 表格列的配置描述，具体项见下表                                    | Object[]        | -      | []                      |
+| dataSource     | 数据数组                                                          | Object[]        | -      | -                       |
+| rowKey         | 表格行 key 的取值                                                 | String          | -      | -                       |
+| loading        | 组件是否加载中                                                    | Boolean         | -      | -                       |
+| className      | 表格拓展类名                                                      | String          | -      | -                       |
+| style          | 表格扩展样式                                                      | Object          | -      | {}                      |
+| titleClassName | 标题拓展类名                                                      | String          | -      | -                       |
+| titleStyle     | 标题拓展样式                                                      | Object          | -      | {}                      |
+| rowClassName   | 表格行的拓展类名                                                  | String          | -      | -                       |
+| rowStyle       | 表格行的拓展样式                                                  | Object          | -      | {}                      |
+| colClassName   | 表格列拓展类名                                                    | String          | -      | -                       |
+| colStyle       | 表格列拓展样式                                                    | Object          | -      | {}                      |
+| onChange       | 排序、筛选变化时触发                                              | Function        | -      | -                       |
+| empty          | 无数据时展示节点                                                  | ReactNode       | -      | `<Text>暂无数据</Text>` |
+| multipleSort   | 启用多列排序                                                      | Boolean         | -      | false                   |
+| scroll         | 可滚动区域                                                        | Object          | -      | { x: '100vw', y: 420 }  |
+| pagination     | 是否开启分页器默认为 false，相关配置可参考 CPagination 分页器组件 | false \| Object | -      | false                   |
+| onPageChange   | 分页器 change 事件                                                | Function        | -      | -                       |
+| pageClassName  | 分页器容器的类名                                                  | String          | -      | -                       |
 
 ## columns 参数
 

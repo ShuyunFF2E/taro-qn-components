@@ -1,4 +1,5 @@
 import { CSSProperties, PropsWithChildren } from 'react';
+import { CPaginationProps } from '../../Pagination/types/pagination';
 
 export interface AnyOpt {
   [prop: string]: any;
@@ -6,11 +7,7 @@ export interface AnyOpt {
 
 export type FixedType = 'left' | 'right';
 export type SortOrder = 'ascend' | 'descend' | undefined;
-export type CompareFn<T = AnyOpt> = (
-  a: T,
-  b: T,
-  sortOrder: SortOrder,
-) => number;
+export type CompareFn<T = AnyOpt> = (a: T, b: T, sortOrder: SortOrder) => number;
 
 export interface IColumns {
   title: string | JSX.Element; // 标题
@@ -21,11 +18,7 @@ export interface IColumns {
   titleStyle?: CSSProperties; //  该列表头内联样式
   className?: string; // 该列单元格 css 类名
   titleClassName?: string; // 设置该列表头单元格 css 类名
-  render?: (
-    text?: any,
-    record?: AnyOpt,
-    index?: number,
-  ) => JSX.Element | string; // 渲染函数
+  render?: (text?: any, record?: AnyOpt, index?: number) => JSX.Element | string; // 渲染函数
   width?: number; // 列宽，单位px，默认100
   sort?: boolean; // 表头是否显示排序按钮
   sortOrder?: SortOrder; // 排序的受控属性
@@ -53,6 +46,9 @@ export interface Props extends PropsWithChildren<any> {
   multipleSort?: boolean; // 是否开启多列排序
   empty: string | JSX.Element; // 表格为空时展示的提示状态
   // 表格是否可滚动，也可以指定滚动区域的宽、高
+  pagination?: false | CPaginationProps; // 分页器
+  onPageChange?: CommonEventFunction; // 分页器change事件
+  pageClassName?: string; // 分页器样式
   scroll?: {
     x?: number | string | boolean;
     y?: number | string | boolean;

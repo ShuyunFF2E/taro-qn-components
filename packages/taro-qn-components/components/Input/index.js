@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Input } from '@tarojs/components';
 import cls from 'classnames';
+import CIcon from '../Icon';
 import './index.less';
 export default class CInput extends React.Component {
   state = {
@@ -32,6 +33,7 @@ export default class CInput extends React.Component {
 
   render() {
     const {
+      searchInput,
       className,
       style,
       clear,
@@ -67,6 +69,9 @@ export default class CInput extends React.Component {
     return (
       <View className={rootCls} style={style}>
         <View className={containerCls}>
+          {searchInput && (
+            <CIcon type="search" className="cross-input__searchIcon" />
+          )}
           <Input
             className="cross-input__content"
             type={type}
@@ -131,6 +136,7 @@ CInput.defaultProps = {
 };
 
 CInput.propTypes = {
+  searchInput: PropTypes.bool,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   style: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

@@ -19,6 +19,25 @@ const CheckboxDemo = () => {
     { label: 'Orange', value: 'Orange', disabled: false },
   ];
 
+  const itemOptions = [
+    {
+      value: 'A',
+      label: '连续签到',
+    },
+    {
+      value: 'B',
+      label: '邀请好友领卡排行榜',
+    },
+    {
+      value: 'C',
+      label: '完善资料',
+    },
+    {
+      value: 'D',
+      label: '拼图',
+    },
+  ];
+
   const [checkState, onChangeCk] = useState({
     checked: true,
     disabled: false,
@@ -82,25 +101,14 @@ const CheckboxDemo = () => {
       </View>
       <View className="h1">受控方式</View>
       <View className="box">
-        <CCheckbox
-          checked={checkState.checked}
-          disabled={checkState.disabled}
-          onChange={onChangeState}
-        >
-          {`${checkState.checked ? 'Checked' : 'Unchecked'}-${
-            checkState.disabled ? 'Disabled' : 'Enabled'
-          }`}
+        <CCheckbox checked={checkState.checked} disabled={checkState.disabled} onChange={onChangeState}>
+          {`${checkState.checked ? 'Checked' : 'Unchecked'}-${checkState.disabled ? 'Disabled' : 'Enabled'}`}
         </CCheckbox>
         <View>
           <CButton className="btn-space" type="primary" onClick={toggleChecked}>
             {checkState.checked ? 'Check' : 'Uncheck'}
           </CButton>
-          <CButton
-            className="btn-space"
-            style={{ margin: '0 10px' }}
-            type="primary"
-            onClick={toggleDisable}
-          >
+          <CButton className="btn-space" style={{ margin: '0 10px' }} type="primary" onClick={toggleDisable}>
             {checkState.disabled ? 'Disable' : 'Enable'}
           </CButton>
         </View>
@@ -108,18 +116,10 @@ const CheckboxDemo = () => {
       <View className="h1">Checkbox 组</View>
       <View className="box">
         <View className="btn-space">
-          <CCheckbox.Group
-            options={plainOptions}
-            defaultValue={['Apple']}
-            onChange={onChange1}
-          />
+          <CCheckbox.Group options={plainOptions} defaultValue={['Apple']} onChange={onChange1} />
         </View>
         <View className="btn-space">
-          <CCheckbox.Group
-            options={options}
-            defaultValue={['Pear']}
-            onChange={onChange2}
-          />
+          <CCheckbox.Group options={options} defaultValue={['Pear']} onChange={onChange2} />
         </View>
         <View className="btn-space">
           <CCheckbox.Group
@@ -132,22 +132,14 @@ const CheckboxDemo = () => {
       </View>
       <View className="h1">全选</View>
       <View className="box">
-        <CCheckbox
-          indeterminate={indeterminate}
-          onChange={onCheckAllChange}
-          checked={checkAll}
-        >
+        <CCheckbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
           {checkAll}
           Check all
         </CCheckbox>
         <CDivider />
-        <CCheckbox.Group
-          options={plainOptions}
-          value={checkedList}
-          onChange={onChangeAll}
-        />
+        <CCheckbox.Group options={plainOptions} value={checkedList} onChange={onChangeAll} />
       </View>
-      <View className="h1">布局</View>
+      <View className="h1">JSX布局</View>
       <View className="box">
         <CCheckbox.Group onChange={onChangeColRow} value={['A', 'B']}>
           <Row>
@@ -168,6 +160,10 @@ const CheckboxDemo = () => {
             </Col>
           </Row>
         </CCheckbox.Group>
+      </View>
+      <View className="h1">Group自定义子元素样式</View>
+      <View className="box">
+        <CCheckbox.Group options={itemOptions} itemStyle={{ width: 180 }} onChange={onChangeColRow} value={['A']} />
       </View>
     </View>
   );

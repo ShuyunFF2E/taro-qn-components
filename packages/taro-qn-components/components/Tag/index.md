@@ -84,13 +84,14 @@ import { CTag } from 'taro-qn-components';
 
 ## Tag 参数
 
-| 参数     | 说明           | 类型    | 可选值 | 默认值 |
-| :------- | :------------- | :------ | :----- | :----- |
-| color    | 标签颜色       | String  | -      | -      |
-| circle   | 是否为圆角按钮 | Boolean | -      | false  |
-| disabled | 是否禁用       | Boolean | -      | false  |
-| icon     | 设置图标       | String  | -      | -      |
-| solid    | 是否为实心按钮 | Boolean | -      | false  |
+| 参数      | 说明           | 类型    | 可选值 | 默认值 |
+| :-------- | :------------- | :------ | :----- | :----- |
+| color     | 标签颜色       | String  | -      | -      |
+| circle    | 是否为圆角按钮 | Boolean | -      | false  |
+| disabled  | 是否禁用       | Boolean | -      | false  |
+| icon      | 设置图标       | String  | -      | -      |
+| className | 父元素类名     | String  | -      | -      |
+| solid     | 是否为实心按钮 | Boolean | -      | false  |
 
 ## Tag 事件
 

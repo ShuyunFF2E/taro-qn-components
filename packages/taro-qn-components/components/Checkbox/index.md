@@ -54,14 +54,57 @@ export default () => {
     setCheckLists(list);
   };
 
-  return (
-    <CCheckbox.Group
-      options={checkboxOption}
-      value={checkList}
-      onChange={onChange}
-    />
-  );
+  return <CCheckbox.Group options={checkboxOption} value={checkList} onChange={onChange} />;
 };
+```
+
+## JSX 布局
+
+```jsx | pure
+<CCheckbox.Group onChange={onChangeColRow} value={['A', 'B']}>
+  <Row>
+    <Col span={8}>
+      <CCheckbox value="A">A</CCheckbox>
+    </Col>
+    <Col span={8}>
+      <CCheckbox value="B">B</CCheckbox>
+    </Col>
+    <Col span={8}>
+      <CCheckbox value="C">C</CCheckbox>
+    </Col>
+    <Col span={8}>
+      <CCheckbox value="D">D</CCheckbox>
+    </Col>
+    <Col span={8}>
+      <CCheckbox value="E">E</CCheckbox>
+    </Col>
+  </Row>
+</CCheckbox.Group>
+```
+
+## 子元素样式自定义
+
+```jsx | pure
+const options = [
+  {
+    value: 'A',
+    label: '连续签到',
+  },
+  {
+    value: 'B',
+    label: '邀请好友领卡排行榜',
+  },
+  {
+    value: 'C',
+    label: '完善资料',
+  },
+  {
+    value: 'D',
+    label: '拼图',
+  },
+];
+
+<CCheckbox.Group options={options} itemStyle={{ width: 200 }} value={['A']} />;
 ```
 
 ## 组件预览
@@ -78,16 +121,20 @@ export default () => {
 | indeterminate | 设置 indeterminate 状态                                             | boolean  | -                          | false      |
 | layout        | 布局                                                                | string   | horizontal &#124; vertical | horizontal |
 | onChange      | 变化时的回调函数                                                    | function | -                          | -          |
+| className     | 外部拓展样式类                                                      | string   | -                          | -          |
+| style         | 外部拓展内联样式                                                    | object   | -                          | -          |
 
 ## Checkbox Group 参数
 
-| 参数         | 说明             | 类型     | 可选值 | 默认值 |
-| ------------ | ---------------- | -------- | ------ | ------ |
-| options      | 指定可选项       | array    | -      | -      |
-| value        | 被选中的选项列表 | array    | -      | -      |
-| defaultValue | 指定当前是否选中 | boolean  | -      | false  |
-| disabled     | 整组失效         | boolean  | -      | false  |
-| onChange     | 变化时的回调函数 | function | -      | -      |
+| 参数         | 说明                             | 类型     | 可选值 | 默认值 |
+| ------------ | -------------------------------- | -------- | ------ | ------ |
+| options      | 指定可选项                       | array    | -      | -      |
+| value        | 被选中的选项列表                 | array    | -      | -      |
+| defaultValue | 指定当前是否选中                 | boolean  | -      | false  |
+| disabled     | 整组失效                         | boolean  | -      | false  |
+| onChange     | 变化时的回调函数                 | function | -      | -      |
+| style        | 外部拓展内联样式                 | object   | -      | -      |
+| itemStyle    | 组内每个 checkbox 的拓展内联样式 | object   | -      | -      |
 
 ## options 字段详解
 

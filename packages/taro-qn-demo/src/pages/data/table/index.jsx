@@ -8,6 +8,10 @@ class CTableDemo extends React.Component {
   state = {
     loading: false,
     dataSource: [],
+    params: {
+      current: 1,
+      pageSize: 10,
+    },
   };
 
   componentDidMount() {
@@ -94,11 +98,7 @@ class CTableDemo extends React.Component {
       width: '20%',
       align: 'center',
       render: (t) => {
-        return (
-          <CButton type={t ? 'normal' : 'primary'}>
-            {t ? '启用' : '禁用'}
-          </CButton>
-        );
+        return <CButton type={t ? 'normal' : 'primary'}>{t ? '启用' : '禁用'}</CButton>;
       },
     },
   ];
@@ -180,42 +180,42 @@ class CTableDemo extends React.Component {
       expandable: false,
 
       render: (t) => {
-        return (
-          <CButton type={t ? 'normal' : 'primary'}>
-            {t ? '启用' : '禁用'}
-          </CButton>
-        );
+        return <CButton type={t ? 'normal' : 'primary'}>{t ? '启用' : '禁用'}</CButton>;
       },
     },
   ];
 
+  onPageChange = (current, pageSize) => {
+    console.log('分页器change', current, pageSize);
+    this.setState({
+      params: {
+        current,
+        pageSize,
+      },
+    });
+  };
+
   render() {
+    const { params } = this.state;
+
     return (
       <View className="container">
         <View className="h1">空数据</View>
         <View className="box">
-          <CTable
-            colStyle={{ padding: '0 5px' }}
-            columns={this.getBasicColumns()}
-            dataSource={[]}
-            empty={<Text>数据被外星人带走了</Text>}
-            rowKey="user_id"
-            loading={false}
-          />
+          <CTable colStyle={{ padding: '0 5px' }} columns={this.getBasicColumns()} dataSource={[]} empty={<Text>数据被外星人带走了</Text>} rowKey="user_id" loading={false} />
         </View>
 
         <View className="h1">基本展示</View>
         <View className="box">
-          <CTable
-            colStyle={{ padding: '0 5px' }}
-            columns={this.getBasicColumns()}
-            dataSource={this.state.dataSource}
-            rowKey="user_id"
-            loading={this.state.loading}
-          />
+          <CTable colStyle={{ padding: '0 5px' }} columns={this.getBasicColumns()} dataSource={this.state.dataSource} rowKey="user_id" loading={this.state.loading} />
         </View>
 
         <View className="h1">列排序</View>
+        <View className="box">
+          <CTable colStyle={{ padding: '0 5px' }} columns={this.getColumns()} dataSource={this.state.dataSource} rowKey="user_id" loading={this.state.loading} />
+        </View>
+
+        <View className="h1">分页器</View>
         <View className="box">
           <CTable
             colStyle={{ padding: '0 5px' }}
@@ -223,6 +223,14 @@ class CTableDemo extends React.Component {
             dataSource={this.state.dataSource}
             rowKey="user_id"
             loading={this.state.loading}
+            pagination={{
+              total: 50,
+              current: params.current,
+              pageSize: params.pageSize,
+              showPageSizeOptions: true,
+            }}
+            onPageChange={this.onPageChange}
+            pageClassName={'tablePageTest'}
           />
         </View>
       </View>
